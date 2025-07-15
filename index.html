@@ -8,7 +8,6 @@
   <style>
     :root {
       --primary: #0d47a1;
-      --secondary: #e3f2fd;
       --accent: #00c853;
       --dark: #263238;
       --bg: #f4f6f8;
@@ -64,7 +63,7 @@
       color: var(--primary);
       margin-bottom: 20px;
     }
-    .benefits, .plans, .testimonials {
+    .benefits, .plans, .testimonials, .extra-testimonials {
       display: grid;
       gap: 20px;
     }
@@ -200,46 +199,6 @@
     footer a:hover {
       text-decoration: underline;
     }
-    /* FAQ */
-    .faq-section {
-      max-width: 900px;
-      margin: auto;
-    }
-    .faq-item {
-      border-bottom: 1px solid #ddd;
-      padding: 10px 0;
-      cursor: pointer;
-    }
-    .faq-question {
-      font-weight: 700;
-      color: var(--primary);
-      position: relative;
-      padding-right: 20px;
-    }
-    .faq-question::after {
-      content: '+';
-      position: absolute;
-      right: 0;
-      top: 0;
-      font-size: 20px;
-      line-height: 1;
-      transition: transform 0.3s ease;
-    }
-    .faq-item.active .faq-question::after {
-      content: '-';
-      transform: rotate(180deg);
-    }
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-      font-style: normal;
-      color: #555;
-      margin-top: 5px;
-    }
-    .faq-item.active .faq-answer {
-      max-height: 150px;
-    }
     /* Responsive */
     @media (max-width: 600px) {
       header h1 {
@@ -292,7 +251,7 @@
   </div>
 </section>
 
-<section id="planos" data-aos="fade-up">
+<section id="planos">
   <h2>Planos sob medida</h2>
   <div class="plans">
     <div class="plan-card">
@@ -316,7 +275,7 @@
   </div>
 </section>
 
-<section id="depoimentos" data-aos="fade-up">
+<section id="depoimentos">
   <h2>O que dizem nossos clientes</h2>
   <div class="testimonials">
     <div class="testimonial">
@@ -334,7 +293,7 @@
   </div>
 </section>
 
-<section class="extra-testimonials" data-aos="fade-up">
+<section class="extra-testimonials">
   <h3>Mais depoimentos e notas de satisfação</h3>
   <div class="testimonial-item">
     “Com o suporte da Equilíbrio, a Universidade São Paulo aumentou sua taxa de conversão em 85% em apenas 6 meses.”
@@ -362,7 +321,7 @@
   </div>
 </section>
 
-<section class="chart-wrapper" data-aos="fade-up">
+<section class="chart-wrapper">
   <h2>Indicadores de Resultados Antes e Depois</h2>
   <canvas id="resultsChart" aria-label="Gráfico comparativo de resultados de três universidades" role="img"></canvas>
   <p style="font-size: 0.9rem; color: #37474f; margin-top: 10px;">
@@ -370,29 +329,7 @@
   </p>
 </section>
 
-<section id="faq" class="faq-section" data-aos="fade-up">
-  <h2>Perguntas Frequentes</h2>
-  <div class="faq-item">
-    <div class="faq-question">Como a inteligência artificial ajuda no atendimento?</div>
-    <div class="faq-answer">
-      A IA adapta scripts automaticamente conforme o perfil do cliente, personalizando o atendimento e aumentando as chances de conversão.
-    </div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-question">Posso integrar com meu sistema atual?</div>
-    <div class="faq-answer">
-      Sim! A Equilíbrio oferece integração omnichannel e pode se conectar com diversas plataformas via API.
-    </div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-question">Quais são os canais suportados?</div>
-    <div class="faq-answer">
-      Atendemos voz, WhatsApp, chat online, e-mail e SMS, tudo integrado em um único painel.
-    </div>
-  </div>
-</section>
-
-<section id="contato" class="form-section" data-aos="fade-up">
+<section id="contato" class="form-section">
   <h2>Fale com nosso time e agende uma demonstração</h2>
   <form id="contactForm" action="https://formsubmit.co/seuemail@exemplo.com" method="POST" novalidate>
     <input type="hidden" name="_captcha" value="false" />
@@ -422,34 +359,18 @@
   </p>
 </footer>
 
-<!-- Bibliotecas JS -->
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-  AOS.init({
-    duration: 900,
-    once: true,
-  });
-
-  // FAQ toggle
-  const faqItems = document.querySelectorAll('.faq-item');
-  faqItems.forEach(item => {
-    item.querySelector('.faq-question').addEventListener('click', () => {
-      const active = item.classList.contains('active');
-      faqItems.forEach(i => i.classList.remove('active'));
-      if(!active) item.classList.add('active');
-    });
-  });
-
-  // Form validation & send
+  // Form validation
   const form = document.getElementById('contactForm');
   const formMessage = document.getElementById('formMessage');
   form.addEventListener('submit', (e) => {
-    e.preventDefault();
     formMessage.style.display = 'none';
     let valid = true;
-
+    e.preventDefault();
+    
     ['nome', 'email', 'mensagem'].forEach(id => {
       const field = form[id];
       if(!field.value.trim()) {
@@ -459,6 +380,7 @@
         field.style.borderColor = '#ccc';
       }
     });
+    
     const email = form.email.value.trim();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if(email && !emailRegex.test(email)) {
@@ -472,10 +394,11 @@
       formMessage.style.display = 'block';
       return;
     }
+
     form.submit();
   });
 
-  // Chart - Resultados antes e depois
+  // Gráfico comparativo resultados
   const ctx = document.getElementById('resultsChart').getContext('2d');
   const data = {
     labels: ['Conversão', 'Satisfação', 'Redução Chamadas Perdidas'],
@@ -559,16 +482,21 @@
       scales: {
         x: {
           stacked: false,
-          grid: { display: false }
+          grid: { display: false },
+          ticks: { font: { size: 12 } }
         },
         y: {
           beginAtZero: true,
           max: 100,
-          ticks: { stepSize: 20, callback: (v) => v + '%' },
+          ticks: {
+            stepSize: 20,
+            callback: value => value + '%',
+            font: { size: 12 }
+          },
           grid: { borderDash: [5, 5] }
         }
       }
-    },
+    }
   };
 
   new Chart(ctx, config);
