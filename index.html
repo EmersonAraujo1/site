@@ -31,7 +31,6 @@
       --shadow-light: rgba(0, 0, 0, 0.08);
     }
 
-    /* Reset e base */
     * {
       margin: 0; padding: 0; box-sizing: border-box;
     }
@@ -49,7 +48,6 @@
       cursor: pointer;
     }
 
-    /* Header sticky */
     header {
       background: linear-gradient(to right, var(--primary), #1565c0);
       color: white;
@@ -84,7 +82,6 @@
       background-color: #00b44b;
     }
 
-    /* Menu hamburguer - mobile */
     .menu-toggle {
       display: none;
       flex-direction: column;
@@ -99,7 +96,6 @@
       transition: 0.3s ease;
     }
 
-    /* Nav links mobile */
     nav ul {
       list-style: none;
       display: flex;
@@ -117,7 +113,6 @@
       background-color: rgba(255, 255, 255, 0.15);
     }
 
-    /* Responsivo Header */
     @media (max-width: 768px) {
       header h1 {
         max-width: 70%;
@@ -143,7 +138,6 @@
       }
     }
 
-    /* Geral seções */
     section {
       max-width: 1200px;
       margin: 60px auto;
@@ -166,7 +160,6 @@
       line-height: 1.5;
     }
 
-    /* Estilo para estatísticas animadas */
     .stats-container {
       display: flex;
       justify-content: center;
@@ -199,7 +192,6 @@
       color: #455a64;
     }
 
-    /* Seção de vídeos depoimentos */
     .video-section {
       display: flex;
       justify-content: center;
@@ -220,7 +212,6 @@
       border: none;
     }
 
-    /* Carrossel logos clientes */
     .clients-carousel {
       display: flex;
       overflow-x: auto;
@@ -244,7 +235,6 @@
       opacity: 1;
     }
 
-    /* FAQ Accordion */
     .faq-section {
       max-width: 900px;
       margin: 0 auto 60px;
@@ -294,7 +284,6 @@
       padding: 15px 25px 25px 25px;
     }
 
-    /* Formulário */
     .form-section {
       max-width: 600px;
       margin: 0 auto 80px;
@@ -346,7 +335,6 @@
       background-color: #00b44b;
     }
 
-    /* Footer */
     footer {
       background-color: var(--primary);
       color: var(--white);
@@ -364,6 +352,49 @@
     footer a:hover {
       color: var(--white);
       text-decoration: underline;
+    }
+
+    /* Novos estilos para comentários extras e gráfico compacto */
+    .extra-testimonials {
+      max-width: 900px;
+      margin: 50px auto 80px;
+      background: var(--white);
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px var(--shadow-light);
+      color: var(--dark);
+    }
+    .extra-testimonials h3 {
+      color: var(--primary);
+      margin-bottom: 25px;
+      text-align: center;
+    }
+    .testimonial-item {
+      border-left: 4px solid var(--accent);
+      padding-left: 15px;
+      margin-bottom: 20px;
+      font-style: italic;
+      font-weight: 500;
+    }
+    .testimonial-item strong {
+      display: block;
+      margin-top: 8px;
+      font-style: normal;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .chart-wrapper {
+      max-width: 600px;
+      margin: 0 auto 70px;
+      background: var(--white);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px var(--shadow-light);
+      text-align: center;
+    }
+    canvas#resultsChart {
+      max-width: 100%;
+      height: 320px;
     }
   </style>
 </head>
@@ -387,7 +418,7 @@
     </div>
   </nav>
 </header>
-<!-- Metodologia -->
+
 <section id="metodologia" data-aos="fade-up">
   <h2>Nossa Metodologia Exclusiva</h2>
   <p class="lead">Na Equilíbrio, unimos inteligência artificial humanizada, omnichannel real e treinamento gamificado para transformar seu call center em uma máquina eficiente de vendas e satisfação. Nosso método atua em 3 pilares:</p>
@@ -398,7 +429,6 @@
   </ul>
 </section>
 
-<!-- Estatísticas animadas -->
 <section id="resultados" data-aos="fade-up">
   <h2>Resultados Comprovados</h2>
   <div class="stats-container">
@@ -421,118 +451,116 @@
   </div>
 </section>
 
-<!-- Benefícios -->
 <section id="beneficios" data-aos="fade-up">
   <h2>Por que escolher a Equilíbrio?</h2>
   <div class="benefits" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; max-width:1200px; margin:auto;">
     <div class="benefit-card" style="background:#fff; padding:20px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
-      <h3 style="color:var(--accent); margin-bottom:10px;">🤖 IA Humanizada</h3>
-      <p>Scripts dinâmicos que se adaptam ao perfil e humor do cliente em tempo real.</p>
+      <h3>🤖 IA Humanizada</h3>
+      <p>Scripts dinâmicos com adaptação automática ao perfil do cliente.</p>
     </div>
     <div class="benefit-card" style="background:#fff; padding:20px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
-      <h3 style="color:var(--accent); margin-bottom:10px;">🔗 Omnichannel Real</h3>
-      <p>Conecte voz, chat, WhatsApp e outros canais numa experiência fluida para o cliente.</p>
+      <h3>🔗 Omnichannel Real</h3>
+      <p>Integração fluida entre canais como WhatsApp, Chat e Voz.</p>
     </div>
     <div class="benefit-card" style="background:#fff; padding:20px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
-      <h3 style="color:var(--accent); margin-bottom:10px;">📊 Indicadores Visuais</h3>
-      <p>Relatórios em tempo real para decisões ágeis e eficazes.</p>
+      <h3>📊 Indicadores Visuais</h3>
+      <p>Relatórios em tempo real para decisões rápidas e eficientes.</p>
     </div>
     <div class="benefit-card" style="background:#fff; padding:20px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
-      <h3 style="color:var(--accent); margin-bottom:10px;">🎮 Treinamento Gamificado</h3>
-      <p>Equipes motivadas e preparadas, com feedbacks e competições internas.</p>
+      <h3>🎮 Treinamento Gamificado</h3>
+      <p>Equipes motivadas, treinadas continuamente com feedbacks visuais.</p>
     </div>
   </div>
 </section>
 
-<!-- Planos -->
 <section id="planos" data-aos="fade-up">
-  <h2>Planos sob medida para seu crescimento</h2>
+  <h2>Planos sob medida</h2>
   <div class="plans" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px; max-width:1200px; margin:auto;">
-    <div class="plan-card" style="background:#fff; padding:25px; border-radius:10px; border:2px solid transparent; text-align:center; transition:0.3s ease;">
-      <h3 style="color:var(--primary); margin-bottom:10px;">Essencial</h3>
+    <div class="plan-card" style="background:#fff; padding:25px; border-radius:10px; border: 2px solid transparent; text-align:center; box-shadow: 0 2px 10px var(--shadow-light);">
+      <h3>Essencial</h3>
       <p>Scripts IA + Indicadores</p>
-      <div class="plan-price" style="font-size:1.5rem; color:var(--accent); margin:15px 0;">R$ 499/mês</div>
+      <div class="plan-price" style="font-size:1.5rem; color: var(--accent); margin: 15px 0;">R$ 499/mês</div>
       <a href="#contato" class="cta-button">Assinar Agora</a>
     </div>
-    <div class="plan-card" style="background:#fff; padding:25px; border-radius:10px; border:2px solid transparent; text-align:center; transition:0.3s ease;">
-      <h3 style="color:var(--primary); margin-bottom:10px;">Profissional</h3>
+    <div class="plan-card" style="background:#fff; padding:25px; border-radius:10px; border: 2px solid transparent; text-align:center; box-shadow: 0 2px 10px var(--shadow-light);">
+      <h3>Profissional</h3>
       <p>Essencial + Omnichannel</p>
-      <div class="plan-price" style="font-size:1.5rem; color:var(--accent); margin:15px 0;">R$ 799/mês</div>
+      <div class="plan-price" style="font-size:1.5rem; color: var(--accent); margin: 15px 0;">R$ 799/mês</div>
       <a href="#contato" class="cta-button">Assinar Agora</a>
     </div>
-    <div class="plan-card" style="background:#fff; padding:25px; border-radius:10px; border:2px solid transparent; text-align:center; transition:0.3s ease;">
-      <h3 style="color:var(--primary); margin-bottom:10px;">Corporativo</h3>
+    <div class="plan-card" style="background:#fff; padding:25px; border-radius:10px; border: 2px solid transparent; text-align:center; box-shadow: 0 2px 10px var(--shadow-light);">
+      <h3>Corporativo</h3>
       <p>Profissional + Consultoria</p>
-      <div class="plan-price" style="font-size:1.5rem; color:var(--accent); margin:15px 0;">R$ 1.299/mês</div>
+      <div class="plan-price" style="font-size:1.5rem; color: var(--accent); margin: 15px 0;">R$ 1.299/mês</div>
       <a href="#contato" class="cta-button">Assinar Agora</a>
     </div>
   </div>
 </section>
 
-<!-- Depoimentos com vídeos -->
 <section id="depoimentos" data-aos="fade-up">
   <h2>O que dizem nossos clientes</h2>
-  <div class="video-section">
-    <div class="video-wrapper">
-      <iframe src="https://www.youtube.com/embed/ysz5S6PUM-U" title="Depoimento Camila" allowfullscreen></iframe>
+  <div class="testimonials" style="max-width:900px; margin:auto; display:grid; gap:20px;">
+    <div class="testimonial" style="background:#fff; padding:20px; border-left:5px solid var(--primary); border-radius:6px; font-style:italic;">
+      “A Equilíbrio revolucionou nosso atendimento! Conversões triplicaram.”
+      <strong>Camila – Coordenadora, Universidade AlfaTech</strong>
     </div>
-    <div class="video-wrapper">
-      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Depoimento Felipe" allowfullscreen></iframe>
+    <div class="testimonial" style="background:#fff; padding:20px; border-left:5px solid var(--primary); border-radius:6px; font-style:italic;">
+      “Nossa equipe nunca esteve tão motivada. Os treinamentos são incríveis.”
+      <strong>Felipe – Supervisor, UnivEduca Virtual</strong>
     </div>
-  </div>
-  <div class="testimonials" style="max-width: 900px; margin: auto; text-align:center; margin-top: 40px;">
-    <blockquote style="font-style: italic; color: #37474f; margin-bottom: 25px;">
-      “A Equilíbrio revolucionou nosso atendimento! Conversões triplicaram.”<br />
-      <strong style="color: var(--primary);">Camila – Coordenadora, Universidade AlfaTech</strong>
-    </blockquote>
-    <blockquote style="font-style: italic; color: #37474f; margin-bottom: 25px;">
-      “Nossa equipe nunca esteve tão motivada. Os treinamentos são incríveis.”<br />
-      <strong style="color: var(--primary);">Felipe – Supervisor, UnivEduca Virtual</strong>
-    </blockquote>
+    <div class="testimonial" style="background:#fff; padding:20px; border-left:5px solid var(--primary); border-radius:6px; font-style:italic;">
+      “Atendimento rápido, relatórios claros e suporte nota 10.”
+      <strong>Luciana – Gerente, Faculdade Nova Era</strong>
+    </div>
   </div>
 </section>
 
-<!-- Logos clientes/carrossel -->
-<section data-aos="fade-up" style="max-width:1200px; margin:60px auto;">
-  <h2>Alguns de nossos clientes</h2>
-  <div class="clients-carousel" aria-label="Logos de clientes">
-    <img class="client-logo" src="https://dummyimage.com/120x60/0d47a1/fff&text=Cliente+1" alt="Logo Cliente 1" />
-    <img class="client-logo" src="https://dummyimage.com/120x60/0d47a1/fff&text=Cliente+2" alt="Logo Cliente 2" />
-    <img class="client-logo" src="https://dummyimage.com/120x60/0d47a1/fff&text=Cliente+3" alt="Logo Cliente 3" />
-    <img class="client-logo" src="https://dummyimage.com/120x60/0d47a1/fff&text=Cliente+4" alt="Logo Cliente 4" />
-    <img class="client-logo" src="https://dummyimage.com/120x60/0d47a1/fff&text=Cliente+5" alt="Logo Cliente 5" />
+<section class="extra-testimonials" data-aos="fade-up">
+  <h3>Mais depoimentos e notas de satisfação</h3>
+  <div class="testimonial-item">
+    “Com o suporte da Equilíbrio, a Universidade São Paulo aumentou sua taxa de conversão em 85% em apenas 6 meses.”
+    <strong>Nota de satisfação: 4.8/5 – Prof. Ricardo</strong>
+  </div>
+  <div class="testimonial-item">
+    “Reduzimos o tempo médio de atendimento em 35% e elevamos a satisfação dos alunos na Univ. Federal de Minas.”
+    <strong>Nota de satisfação: 4.7/5 – Coord. Vanessa</strong>
+  </div>
+  <div class="testimonial-item">
+    “Implementar o sistema da Equilíbrio foi a melhor decisão da Faculdade Regional. Crescimento nas vendas de cursos de 70%.”
+    <strong>Nota de satisfação: 4.9/5 – Gestor Marcelo</strong>
   </div>
 </section>
 
-<!-- FAQ Accordion -->
+<section class="chart-wrapper" data-aos="fade-up">
+  <h2>Indicadores de Resultados Antes e Depois</h2>
+  <canvas id="resultsChart" aria-label="Gráfico comparativo de resultados de três universidades" role="img"></canvas>
+  <p style="font-size:0.9rem; color:#37474f; margin-top:10px;">
+    Comparação dos principais KPIs antes e após a implementação da solução Equilíbrio.
+  </p>
+</section>
+
 <section id="faq" class="faq-section" data-aos="fade-up">
   <h2>Perguntas Frequentes</h2>
   <div class="faq-item">
-    <div class="faq-question">Como a IA humanizada funciona na prática?</div>
+    <div class="faq-question">Como a inteligência artificial ajuda no atendimento?</div>
     <div class="faq-answer">
-      Nossa IA adapta os scripts e respostas em tempo real, identificando o perfil emocional e comportamento do cliente para melhorar a comunicação e conversão.
+      A IA adapta scripts automaticamente conforme o perfil do cliente, personalizando o atendimento e aumentando as chances de conversão.
     </div>
   </div>
   <div class="faq-item">
-    <div class="faq-question">Quais canais são integrados no omnichannel?</div>
+    <div class="faq-question">Posso integrar com meu sistema atual?</div>
     <div class="faq-answer">
-      Integramos voz, chat, WhatsApp, e-mail, redes sociais e outras plataformas para oferecer uma experiência única ao cliente.
+      Sim! A Equilíbrio oferece integração omnichannel e pode se conectar com diversas plataformas via API.
     </div>
   </div>
   <div class="faq-item">
-    <div class="faq-question">Posso testar antes de contratar?</div>
+    <div class="faq-question">Quais são os canais suportados?</div>
     <div class="faq-answer">
-      Sim! Oferecemos 14 dias de teste gratuito para que sua equipe experimente todas as funcionalidades.
-    </div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-question">Como funciona o treinamento gamificado?</div>
-    <div class="faq-answer">
-      Utilizamos técnicas de jogos e competições para engajar a equipe e melhorar continuamente as habilidades de vendas.
+      Atendemos voz, WhatsApp, chat online, e-mail e SMS, tudo integrado em um único painel.
     </div>
   </div>
 </section>
-<!-- Contato / Formulário -->
+
 <section id="contato" class="form-section" data-aos="fade-up">
   <h2>Fale com nosso time e agende uma demonstração</h2>
   <form id="contactForm" action="https://formsubmit.co/seuemail@exemplo.com" method="POST" novalidate>
@@ -554,21 +582,20 @@
   <div id="formMessage" style="margin-top:20px; font-weight:600; color: var(--accent); display:none;"></div>
 </section>
 
-<!-- Chatbot Embed Tawk.to (exemplo gratuito) -->
-<script type="text/javascript">
-  var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-  (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/64ae9f1a1cc26f17f140a3f7/1h5ij35f7';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-  })();
-</script>
+<footer>
+  <p>&copy; 2025 Equilíbrio. Todos os direitos reservados.</p>
+  <p>
+    <a href="#">Termos</a> |
+    <a href="#">Privacidade</a> |
+    <a href="#">Contato Comercial</a>
+  </p>
+</footer>
 
-<!-- Scripts gerais -->
+<!-- Bibliotecas JS -->
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+
+<!-- Scripts -->
 <script>
   AOS.init({
     duration: 900,
@@ -577,10 +604,8 @@
 
   // Contadores animados
   const counters = document.querySelectorAll('.count');
-  const speed = 200; // Quanto menor, mais rápido
-  const options = {
-    threshold: 0.5
-  };
+  const speed = 200;
+  const options = { threshold: 0.5 };
 
   const startCount = (entry) => {
     if(entry.isIntersecting) {
@@ -588,7 +613,6 @@
       const target = +el.getAttribute('data-target');
       let count = 0;
       const increment = target / speed;
-
       const updateCount = () => {
         count += increment;
         if(count < target) {
@@ -602,43 +626,36 @@
       updateCount();
     }
   }
-
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(startCount);
   }, options);
+  counters.forEach(counter => observer.observe(counter));
 
-  counters.forEach(counter => {
-    observer.observe(counter);
-  });
-
-  // FAQ accordion toggle
+  // FAQ toggle
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach(item => {
     item.querySelector('.faq-question').addEventListener('click', () => {
-      const isActive = item.classList.contains('active');
+      const active = item.classList.contains('active');
       faqItems.forEach(i => i.classList.remove('active'));
-      if(!isActive) item.classList.add('active');
+      if(!active) item.classList.add('active');
     });
   });
 
-  // Menu mobile toggle
+  // Menu toggle mobile
   const menuToggle = document.getElementById('menu-toggle');
   const navLinks = document.getElementById('nav-links');
-
   menuToggle.addEventListener('click', () => {
     navLinks.classList.toggle('show');
   });
 
-  // Form validation + feedback
+  // Form validation & send
   const form = document.getElementById('contactForm');
   const formMessage = document.getElementById('formMessage');
-
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     formMessage.style.display = 'none';
     let valid = true;
 
-    // Simples validação
     ['nome', 'email', 'mensagem'].forEach(id => {
       const field = form[id];
       if(!field.value.trim()) {
@@ -648,29 +665,22 @@
         field.style.borderColor = '#ccc';
       }
     });
-
-    // Email regex simples
     const email = form.email.value.trim();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if(!emailRegex.test(email)) {
       valid = false;
       form.email.style.borderColor = 'red';
     }
-
     if(!valid) {
       formMessage.textContent = 'Por favor, preencha todos os campos obrigatórios corretamente.';
       formMessage.style.color = 'red';
       formMessage.style.display = 'block';
       return;
     }
-
-    // Enviar formulário via fetch para formsubmit.co
     fetch(form.action, {
       method: 'POST',
       body: new FormData(form),
-      headers: {
-        'Accept': 'application/json'
-      }
+      headers: { 'Accept': 'application/json' }
     }).then(response => {
       if(response.ok) {
         formMessage.style.color = 'var(--accent)';
@@ -688,8 +698,125 @@
       formMessage.style.display = 'block';
     });
   });
+
+  // Chart - Resultados Antes/Depois - 3 universidades
+  const ctx = document.getElementById('resultsChart').getContext('2d');
+
+  const data = {
+    labels: ['USP', 'UFMG', 'Faculdade Regional'],
+    datasets: [
+      {
+        label: 'Taxa Conversão Antes (%)',
+        data: [25, 30, 22],
+        backgroundColor: 'rgba(13, 71, 161, 0.6)',
+        borderColor: 'rgba(13, 71, 161, 1)',
+        borderWidth: 1,
+        borderRadius: 6,
+        barPercentage: 0.5,
+      },
+      {
+        label: 'Taxa Conversão Depois (%)',
+        data: [46, 54, 38],
+        backgroundColor: 'rgba(0, 200, 83, 0.7)',
+        borderColor: 'rgba(0, 200, 83, 1)',
+        borderWidth: 1,
+        borderRadius: 6,
+        barPercentage: 0.5,
+      },
+      {
+        label: 'Satisfação Clientes (0-5)',
+        data: [4.8, 4.7, 4.9],
+        type: 'line',
+        borderColor: 'rgba(255, 193, 7, 1)',
+        backgroundColor: 'rgba(255, 193, 7, 0.4)',
+        yAxisID: 'y1',
+        tension: 0.3,
+        fill: true,
+        pointRadius: 6,
+        pointHoverRadius: 8,
+        order: 2
+      }
+    ]
+  };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: {
+      mode: 'nearest',
+      intersect: false,
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        max: 60,
+        title: {
+          display: true,
+          text: 'Taxa (%)',
+          color: 'rgba(13,71,161,0.8)',
+          font: {weight: 'bold', size: 14}
+        },
+        ticks: {
+          stepSize: 10
+        }
+      },
+      y1: {
+        beginAtZero: true,
+        min: 0,
+        max: 5,
+        position: 'right',
+        grid: {
+          drawOnChartArea: false,
+        },
+        title: {
+          display: true,
+          text: 'Satisfação (0-5)',
+          color: 'rgba(255,193,7,0.9)',
+          font: {weight: 'bold', size: 14}
+        },
+        ticks: {
+          stepSize: 1
+        }
+      }
+    },
+    plugins: {
+      legend: {
+        labels: {
+          font: {size: 14, weight: '600'}
+        },
+        position: 'top',
+        padding: 20,
+      },
+      tooltip: {
+        enabled: true,
+        mode: 'index',
+        intersect: false,
+        backgroundColor: 'rgba(33,33,33,0.8)',
+        titleFont: {weight: '700', size: 14},
+        bodyFont: {size: 13},
+        padding: 10
+      }
+    }
+  };
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: data,
+    options: options
+  });
 </script>
 
+<!-- Chatbot Embed (exemplo Tawk.to gratuito) -->
+<script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/64ae9f1a1cc26f17f140a3f7/1h5ij35f7';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+  })();
+</script>
 </body>
 </html>
-
