@@ -1,14 +1,25 @@
-from pathlib import Path
-
-# HTML final com formulário de contato integrado (usando FormSubmit)
-final_html = """
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Equilíbrio - Solução de Vendas para Call Center</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Metatags SEO e Open Graph -->
+  <meta name="description" content="Equilíbrio: Solução completa para call centers que querem transformar atendimento em vendas, com IA humanizada e omnichannel." />
+  <meta name="keywords" content="call center, vendas, inteligência artificial, omnichannel, atendimento, CRM, chatbot, treinamento" />
+  <meta property="og:title" content="Equilíbrio - Solução de Vendas para Call Center" />
+  <meta property="og:description" content="Transforme seu call center em um centro de vendas eficiente com Equilíbrio." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://seusite.com.br" />
+  <meta property="og:image" content="https://seusite.com.br/og-image.jpg" />
+
+  <!-- Fonte Google -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- AOS Animate On Scroll CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
   <style>
     :root {
       --primary: #0d47a1;
@@ -17,278 +28,668 @@ final_html = """
       --dark: #263238;
       --bg: #f4f6f8;
       --white: #ffffff;
+      --shadow-light: rgba(0, 0, 0, 0.08);
+    }
+
+    /* Reset e base */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
     }
 
     body {
-      margin: 0;
       font-family: 'Poppins', sans-serif;
-      background-color: var(--bg);
+      background: var(--bg);
       color: var(--dark);
+      scroll-behavior: smooth;
     }
 
+    a {
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    /* Header sticky */
     header {
       background: linear-gradient(to right, var(--primary), #1565c0);
       color: white;
-      text-align: center;
-      padding: 80px 20px;
+      padding: 20px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px var(--shadow-light);
     }
-
     header h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
+      font-size: 1.5rem;
+      max-width: 60%;
     }
-
-    header p {
-      font-size: 1.25rem;
-      max-width: 600px;
-      margin: auto;
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
     }
-
     .cta-button {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 14px 30px;
       background-color: var(--accent);
-      color: white;
+      color: var(--white);
+      padding: 12px 28px;
       border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
+      font-weight: 700;
       transition: background-color 0.3s ease;
+      white-space: nowrap;
     }
-
     .cta-button:hover {
       background-color: #00b44b;
     }
 
+    /* Menu hamburguer - mobile */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+    .menu-toggle div {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+      transition: 0.3s ease;
+    }
+
+    /* Nav links mobile */
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+    }
+    nav ul li a {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--white);
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+    nav ul li a:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Responsivo Header */
+    @media (max-width: 768px) {
+      header h1 {
+        max-width: 70%;
+        font-size: 1.2rem;
+      }
+      nav ul {
+        position: fixed;
+        top: 64px;
+        right: 0;
+        background: var(--primary);
+        flex-direction: column;
+        width: 200px;
+        padding: 20px;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        height: calc(100vh - 64px);
+      }
+      nav ul.show {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
+    /* Geral seções */
     section {
       max-width: 1200px;
-      margin: auto;
-      padding: 60px 20px;
+      margin: 60px auto;
+      padding: 0 20px;
     }
 
     h2 {
-      color: var(--primary);
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-
-    .benefits, .plans, .testimonials {
-      display: grid;
-      gap: 20px;
-    }
-
-    .benefits {
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
-
-    .benefit-card {
-      background-color: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-
-    .benefit-card h3 {
-      margin-bottom: 10px;
-      color: var(--accent);
-    }
-
-    .testimonial {
-      background-color: white;
-      padding: 20px;
-      border-left: 5px solid var(--primary);
-      border-radius: 6px;
-      font-style: italic;
-    }
-
-    .testimonial strong {
-      display: block;
-      margin-top: 10px;
-      font-style: normal;
-      color: var(--primary);
-    }
-
-    .plans {
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      margin-top: 30px;
-    }
-
-    .plan-card {
-      background-color: white;
-      padding: 25px;
-      border-radius: 10px;
-      border: 2px solid transparent;
-      transition: 0.3s ease;
+      font-size: 2.5rem;
       text-align: center;
-    }
-
-    .plan-card:hover {
-      border-color: var(--accent);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .plan-card h3 {
-      margin-bottom: 10px;
+      margin-bottom: 20px;
       color: var(--primary);
     }
 
-    .plan-card p {
-      margin: 10px 0;
+    p.lead {
+      max-width: 800px;
+      margin: 0 auto 40px;
+      font-size: 1.15rem;
+      text-align: center;
+      color: #37474f;
+      line-height: 1.5;
     }
 
-    .plan-price {
-      font-size: 1.5rem;
+    /* Estilo para estatísticas animadas */
+    .stats-container {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-bottom: 50px;
+    }
+    .stat {
+      background: var(--white);
+      padding: 30px 25px;
+      border-radius: 12px;
+      box-shadow: 0 3px 15px var(--shadow-light);
+      text-align: center;
+      flex: 1 1 200px;
+      cursor: default;
+      user-select: none;
+      transition: transform 0.3s ease;
+    }
+    .stat:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    .stat h3 {
+      font-size: 2.8rem;
       color: var(--accent);
-      margin: 15px 0;
+      margin-bottom: 12px;
     }
-
-    .form-section form {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      max-width: 600px;
-      margin: auto;
-    }
-
-    .form-section input, .form-section textarea {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    .form-section label {
+    .stat p {
       font-weight: 600;
+      color: #455a64;
     }
 
+    /* Seção de vídeos depoimentos */
+    .video-section {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 50px;
+    }
+    .video-wrapper {
+      width: 360px;
+      max-width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 18px var(--shadow-light);
+    }
+    iframe {
+      width: 100%;
+      height: 215px;
+      border: none;
+    }
+
+    /* Carrossel logos clientes */
+    .clients-carousel {
+      display: flex;
+      overflow-x: auto;
+      gap: 40px;
+      padding: 20px 0;
+      scrollbar-width: none;
+    }
+    .clients-carousel::-webkit-scrollbar {
+      display: none;
+    }
+    .client-logo {
+      flex: 0 0 auto;
+      width: 120px;
+      filter: grayscale(80%);
+      opacity: 0.6;
+      transition: filter 0.3s ease, opacity 0.3s ease;
+      cursor: pointer;
+    }
+    .client-logo:hover {
+      filter: none;
+      opacity: 1;
+    }
+
+    /* FAQ Accordion */
+    .faq-section {
+      max-width: 900px;
+      margin: 0 auto 60px;
+    }
+    .faq-item {
+      background: var(--white);
+      border-radius: 10px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 12px var(--shadow-light);
+      overflow: hidden;
+    }
+    .faq-question {
+      padding: 20px 25px;
+      cursor: pointer;
+      font-weight: 600;
+      position: relative;
+      user-select: none;
+      background-color: var(--secondary);
+      color: var(--dark);
+      transition: background-color 0.3s ease;
+    }
+    .faq-question:hover {
+      background-color: #cde7ff;
+    }
+    .faq-question::after {
+      content: '+';
+      position: absolute;
+      right: 25px;
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+    .faq-item.active .faq-question::after {
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      padding: 0 25px;
+      background: white;
+      color: #37474f;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      padding: 15px 25px 25px 25px;
+    }
+
+    /* Formulário */
+    .form-section {
+      max-width: 600px;
+      margin: 0 auto 80px;
+      background: var(--white);
+      padding: 30px 25px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px var(--shadow-light);
+    }
+    .form-section h2 {
+      margin-bottom: 30px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      outline: none;
+    }
+    button[type="submit"] {
+      background-color: var(--accent);
+      border: none;
+      color: var(--white);
+      padding: 14px 30px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+    button[type="submit"]:hover {
+      background-color: #00b44b;
+    }
+
+    /* Footer */
     footer {
       background-color: var(--primary);
-      color: white;
+      color: var(--white);
       text-align: center;
       padding: 40px 20px;
-      margin-top: 60px;
+      font-size: 0.9rem;
     }
-
     footer a {
       color: #90caf9;
       margin: 0 10px;
       text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
     }
-
     footer a:hover {
+      color: var(--white);
       text-decoration: underline;
     }
   </style>
 </head>
 <body>
-
-  <header>
-    <h1>Equilíbrio – Transforme seu Call Center em um Centro de Vendas</h1>
-    <p>Atendimento inteligente com IA, engajamento real e conversão comprovada.</p>
-    <a href="#" class="cta-button">Agende sua Demonstração</a>
-  </header>
-
-  <section>
-    <h2>Por que escolher a Equilíbrio?</h2>
-    <div class="benefits">
-      <div class="benefit-card">
-        <h3>🤖 IA Humanizada</h3>
-        <p>Scripts dinâmicos com adaptação automática ao perfil do cliente.</p>
-      </div>
-      <div class="benefit-card">
-        <h3>🔗 Omnichannel Real</h3>
-        <p>Integração fluida entre canais como WhatsApp, Chat e Voz.</p>
-      </div>
-      <div class="benefit-card">
-        <h3>📊 Indicadores Visuais</h3>
-        <p>Relatórios em tempo real para decisões rápidas e eficientes.</p>
-      </div>
-      <div class="benefit-card">
-        <h3>🎮 Treinamento Gamificado</h3>
-        <p>Equipes motivadas, treinadas continuamente com feedbacks visuais.</p>
-      </div>
+<header>
+  <h1>Equilíbrio – Solução para Call Centers Venderem Mais</h1>
+  <nav>
+    <ul id="nav-links">
+      <li><a href="#metodologia">Metodologia</a></li>
+      <li><a href="#resultados">Resultados</a></li>
+      <li><a href="#beneficios">Benefícios</a></li>
+      <li><a href="#planos">Planos</a></li>
+      <li><a href="#depoimentos">Depoimentos</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contato" class="cta-button">Agende uma Demonstração</a></li>
+    </ul>
+    <div class="menu-toggle" id="menu-toggle" aria-label="Menu">
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
-  </section>
+  </nav>
+</header>
+<!-- Metodologia -->
+<section id="metodologia" data-aos="fade-up">
+  <h2>Nossa Metodologia Exclusiva</h2>
+  <p class="lead">Na Equilíbrio, unimos inteligência artificial humanizada, omnichannel real e treinamento gamificado para transformar seu call center em uma máquina eficiente de vendas e satisfação. Nosso método atua em 3 pilares:</p>
+  <ul style="max-width: 700px; margin: auto 0 50px; color:#37474f; font-weight:600; font-size:1.1rem;">
+    <li>🔍 Análise profunda do perfil do cliente para scripts personalizados;</li>
+    <li>🔄 Integração total entre canais (voz, chat, WhatsApp e mais);</li>
+    <li>🎯 Monitoramento e feedbacks contínuos via dashboards intuitivos.</li>
+  </ul>
+</section>
 
-  <section>
-    <h2>Planos sob medida</h2>
-    <div class="plans">
-      <div class="plan-card">
-        <h3>Essencial</h3>
-        <p>Scripts IA + Indicadores</p>
-        <div class="plan-price">R$ 499/mês</div>
-        <a href="#" class="cta-button">Assinar Agora</a>
-      </div>
-      <div class="plan-card">
-        <h3>Profissional</h3>
-        <p>Essencial + Omnichannel</p>
-        <div class="plan-price">R$ 799/mês</div>
-        <a href="#" class="cta-button">Assinar Agora</a>
-      </div>
-      <div class="plan-card">
-        <h3>Corporativo</h3>
-        <p>Profissional + Consultoria</p>
-        <div class="plan-price">R$ 1.299/mês</div>
-        <a href="#" class="cta-button">Assinar Agora</a>
-      </div>
+<!-- Estatísticas animadas -->
+<section id="resultados" data-aos="fade-up">
+  <h2>Resultados Comprovados</h2>
+  <div class="stats-container">
+    <div class="stat">
+      <h3 class="count" data-target="120">0</h3>
+      <p>% aumento de conversão</p>
     </div>
-  </section>
-
-  <section>
-    <h2>O que dizem nossos clientes</h2>
-    <div class="testimonials">
-      <div class="testimonial">
-        “A Equilíbrio revolucionou nosso atendimento! Conversões triplicaram.”
-        <strong>Camila – Coordenadora, Universidade AlfaTech</strong>
-      </div>
-      <div class="testimonial">
-        “Nossa equipe nunca esteve tão motivada. Os treinamentos são incríveis.”
-        <strong>Felipe – Supervisor, UnivEduca Virtual</strong>
-      </div>
-      <div class="testimonial">
-        “Atendimento rápido, relatórios claros e suporte nota 10.”
-        <strong>Luciana – Gerente, Faculdade Nova Era</strong>
-      </div>
+    <div class="stat">
+      <h3 class="count" data-target="95">0</h3>
+      <p>% satisfação dos clientes</p>
     </div>
-  </section>
+    <div class="stat">
+      <h3 class="count" data-target="30">0</h3>
+      <p>% redução de churn</p>
+    </div>
+    <div class="stat">
+      <h3 class="count" data-target="40">0</h3>
+      <p>% redução de custos operacionais</p>
+    </div>
+  </div>
+</section>
 
-  <section class="form-section">
-    <h2>Fale com nosso time</h2>
-    <form action="https://formsubmit.co/seuemail@exemplo.com" method="POST">
-      <input type="hidden" name="_captcha" value="false">
-      <label>Nome:</label>
-      <input type="text" name="nome" required>
+<!-- Benefícios -->
+<section id="beneficios" data-aos="fade-up">
+  <h2>Por que escolher a Equilíbrio?</h2>
+  <div class="benefits" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; max-width:1200px; margin:auto;">
+    <div class="benefit-card" style="background:#fff; padding:20px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+      <h3 style="color:var(--accent); margin-bottom:10px;">🤖 IA Humanizada</h3>
+      <p>Scripts dinâmicos que se adaptam ao perfil e humor do cliente em tempo real.</p>
+    </div>
+    <div class="benefit-card" style="background:#fff; padding:20px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+      <h3 style="color:var(--accent); margin-bottom:10px;">🔗 Omnichannel Real</h3>
+      <p>Conecte voz, chat, WhatsApp e outros canais numa experiência fluida para o cliente.</p>
+    </div>
+    <div class="benefit-card" style="background:#fff; padding:20px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+      <h3 style="color:var(--accent); margin-bottom:10px;">📊 Indicadores Visuais</h3>
+      <p>Relatórios em tempo real para decisões ágeis e eficazes.</p>
+    </div>
+    <div class="benefit-card" style="background:#fff; padding:20px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+      <h3 style="color:var(--accent); margin-bottom:10px;">🎮 Treinamento Gamificado</h3>
+      <p>Equipes motivadas e preparadas, com feedbacks e competições internas.</p>
+    </div>
+  </div>
+</section>
 
-      <label>E-mail:</label>
-      <input type="email" name="email" required>
+<!-- Planos -->
+<section id="planos" data-aos="fade-up">
+  <h2>Planos sob medida para seu crescimento</h2>
+  <div class="plans" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px; max-width:1200px; margin:auto;">
+    <div class="plan-card" style="background:#fff; padding:25px; border-radius:10px; border:2px solid transparent; text-align:center; transition:0.3s ease;">
+      <h3 style="color:var(--primary); margin-bottom:10px;">Essencial</h3>
+      <p>Scripts IA + Indicadores</p>
+      <div class="plan-price" style="font-size:1.5rem; color:var(--accent); margin:15px 0;">R$ 499/mês</div>
+      <a href="#contato" class="cta-button">Assinar Agora</a>
+    </div>
+    <div class="plan-card" style="background:#fff; padding:25px; border-radius:10px; border:2px solid transparent; text-align:center; transition:0.3s ease;">
+      <h3 style="color:var(--primary); margin-bottom:10px;">Profissional</h3>
+      <p>Essencial + Omnichannel</p>
+      <div class="plan-price" style="font-size:1.5rem; color:var(--accent); margin:15px 0;">R$ 799/mês</div>
+      <a href="#contato" class="cta-button">Assinar Agora</a>
+    </div>
+    <div class="plan-card" style="background:#fff; padding:25px; border-radius:10px; border:2px solid transparent; text-align:center; transition:0.3s ease;">
+      <h3 style="color:var(--primary); margin-bottom:10px;">Corporativo</h3>
+      <p>Profissional + Consultoria</p>
+      <div class="plan-price" style="font-size:1.5rem; color:var(--accent); margin:15px 0;">R$ 1.299/mês</div>
+      <a href="#contato" class="cta-button">Assinar Agora</a>
+    </div>
+  </div>
+</section>
 
-      <label>Empresa:</label>
-      <input type="text" name="empresa">
+<!-- Depoimentos com vídeos -->
+<section id="depoimentos" data-aos="fade-up">
+  <h2>O que dizem nossos clientes</h2>
+  <div class="video-section">
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/ysz5S6PUM-U" title="Depoimento Camila" allowfullscreen></iframe>
+    </div>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Depoimento Felipe" allowfullscreen></iframe>
+    </div>
+  </div>
+  <div class="testimonials" style="max-width: 900px; margin: auto; text-align:center; margin-top: 40px;">
+    <blockquote style="font-style: italic; color: #37474f; margin-bottom: 25px;">
+      “A Equilíbrio revolucionou nosso atendimento! Conversões triplicaram.”<br />
+      <strong style="color: var(--primary);">Camila – Coordenadora, Universidade AlfaTech</strong>
+    </blockquote>
+    <blockquote style="font-style: italic; color: #37474f; margin-bottom: 25px;">
+      “Nossa equipe nunca esteve tão motivada. Os treinamentos são incríveis.”<br />
+      <strong style="color: var(--primary);">Felipe – Supervisor, UnivEduca Virtual</strong>
+    </blockquote>
+  </div>
+</section>
 
-      <label>Mensagem:</label>
-      <textarea name="mensagem" rows="5" required></textarea>
+<!-- Logos clientes/carrossel -->
+<section data-aos="fade-up" style="max-width:1200px; margin:60px auto;">
+  <h2>Alguns de nossos clientes</h2>
+  <div class="clients-carousel" aria-label="Logos de clientes">
+    <img class="client-logo" src="https://dummyimage.com/120x60/0d47a1/fff&text=Cliente+1" alt="Logo Cliente 1" />
+    <img class="client-logo" src="https://dummyimage.com/120x60/0d47a1/fff&text=Cliente+2" alt="Logo Cliente 2" />
+    <img class="client-logo" src="https://dummyimage.com/120x60/0d47a1/fff&text=Cliente+3" alt="Logo Cliente 3" />
+    <img class="client-logo" src="https://dummyimage.com/120x60/0d47a1/fff&text=Cliente+4" alt="Logo Cliente 4" />
+    <img class="client-logo" src="https://dummyimage.com/120x60/0d47a1/fff&text=Cliente+5" alt="Logo Cliente 5" />
+  </div>
+</section>
 
-      <button type="submit" class="cta-button" style="border:none;">Enviar Mensagem</button>
-    </form>
-  </section>
+<!-- FAQ Accordion -->
+<section id="faq" class="faq-section" data-aos="fade-up">
+  <h2>Perguntas Frequentes</h2>
+  <div class="faq-item">
+    <div class="faq-question">Como a IA humanizada funciona na prática?</div>
+    <div class="faq-answer">
+      Nossa IA adapta os scripts e respostas em tempo real, identificando o perfil emocional e comportamento do cliente para melhorar a comunicação e conversão.
+    </div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">Quais canais são integrados no omnichannel?</div>
+    <div class="faq-answer">
+      Integramos voz, chat, WhatsApp, e-mail, redes sociais e outras plataformas para oferecer uma experiência única ao cliente.
+    </div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">Posso testar antes de contratar?</div>
+    <div class="faq-answer">
+      Sim! Oferecemos 14 dias de teste gratuito para que sua equipe experimente todas as funcionalidades.
+    </div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">Como funciona o treinamento gamificado?</div>
+    <div class="faq-answer">
+      Utilizamos técnicas de jogos e competições para engajar a equipe e melhorar continuamente as habilidades de vendas.
+    </div>
+  </div>
+</section>
+<!-- Contato / Formulário -->
+<section id="contato" class="form-section" data-aos="fade-up">
+  <h2>Fale com nosso time e agende uma demonstração</h2>
+  <form id="contactForm" action="https://formsubmit.co/seuemail@exemplo.com" method="POST" novalidate>
+    <input type="hidden" name="_captcha" value="false" />
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" required placeholder="Seu nome completo" />
 
-  <footer>
-    <p>&copy; 2025 Equilíbrio. Todos os direitos reservados.</p>
-    <p>
-      <a href="#">Termos</a> |
-      <a href="#">Privacidade</a> |
-      <a href="#">Contato Comercial</a>
-    </p>
-  </footer>
+    <label for="email">E-mail:</label>
+    <input type="email" id="email" name="email" required placeholder="seu@email.com" />
+
+    <label for="empresa">Empresa:</label>
+    <input type="text" id="empresa" name="empresa" placeholder="Nome da empresa" />
+
+    <label for="mensagem">Mensagem:</label>
+    <textarea id="mensagem" name="mensagem" rows="5" required placeholder="Escreva sua mensagem aqui"></textarea>
+
+    <button type="submit" class="cta-button" style="width:100%;">Enviar Mensagem</button>
+  </form>
+  <div id="formMessage" style="margin-top:20px; font-weight:600; color: var(--accent); display:none;"></div>
+</section>
+
+<!-- Chatbot Embed Tawk.to (exemplo gratuito) -->
+<script type="text/javascript">
+  var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+  (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/64ae9f1a1cc26f17f140a3f7/1h5ij35f7';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+  })();
+</script>
+
+<!-- Scripts gerais -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 900,
+    once: true,
+  });
+
+  // Contadores animados
+  const counters = document.querySelectorAll('.count');
+  const speed = 200; // Quanto menor, mais rápido
+  const options = {
+    threshold: 0.5
+  };
+
+  const startCount = (entry) => {
+    if(entry.isIntersecting) {
+      const el = entry.target;
+      const target = +el.getAttribute('data-target');
+      let count = 0;
+      const increment = target / speed;
+
+      const updateCount = () => {
+        count += increment;
+        if(count < target) {
+          el.innerText = Math.ceil(count);
+          requestAnimationFrame(updateCount);
+        } else {
+          el.innerText = target;
+          observer.unobserve(el);
+        }
+      }
+      updateCount();
+    }
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(startCount);
+  }, options);
+
+  counters.forEach(counter => {
+    observer.observe(counter);
+  });
+
+  // FAQ accordion toggle
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    item.querySelector('.faq-question').addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+      faqItems.forEach(i => i.classList.remove('active'));
+      if(!isActive) item.classList.add('active');
+    });
+  });
+
+  // Menu mobile toggle
+  const menuToggle = document.getElementById('menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+  });
+
+  // Form validation + feedback
+  const form = document.getElementById('contactForm');
+  const formMessage = document.getElementById('formMessage');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    formMessage.style.display = 'none';
+    let valid = true;
+
+    // Simples validação
+    ['nome', 'email', 'mensagem'].forEach(id => {
+      const field = form[id];
+      if(!field.value.trim()) {
+        valid = false;
+        field.style.borderColor = 'red';
+      } else {
+        field.style.borderColor = '#ccc';
+      }
+    });
+
+    // Email regex simples
+    const email = form.email.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(!emailRegex.test(email)) {
+      valid = false;
+      form.email.style.borderColor = 'red';
+    }
+
+    if(!valid) {
+      formMessage.textContent = 'Por favor, preencha todos os campos obrigatórios corretamente.';
+      formMessage.style.color = 'red';
+      formMessage.style.display = 'block';
+      return;
+    }
+
+    // Enviar formulário via fetch para formsubmit.co
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(response => {
+      if(response.ok) {
+        formMessage.style.color = 'var(--accent)';
+        formMessage.textContent = 'Mensagem enviada com sucesso! Em breve entraremos em contato.';
+        formMessage.style.display = 'block';
+        form.reset();
+      } else {
+        formMessage.style.color = 'red';
+        formMessage.textContent = 'Erro ao enviar mensagem. Por favor, tente novamente.';
+        formMessage.style.display = 'block';
+      }
+    }).catch(() => {
+      formMessage.style.color = 'red';
+      formMessage.textContent = 'Erro ao enviar mensagem. Por favor, tente novamente.';
+      formMessage.style.display = 'block';
+    });
+  });
+</script>
 
 </body>
 </html>
-"""
 
-# Salvar arquivo com formulário integrado
-final_file = Path("/mnt/data/site-equilibrio-final-com-formulario.html")
-final_file.write_text(final_html, encoding="utf-8")
-print(f"Arquivo salvo: {final_file.name}")
