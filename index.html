@@ -78,6 +78,12 @@
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 2px 8px var(--shadow-light);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .benefit-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     }
     .benefit-card h3 {
       color: var(--accent);
@@ -220,6 +226,33 @@
       <p>Profissional + Consultoria</p>
       <div class="plan-price">R$ 1.299/mês</div>
       <a href="#contato" class="cta-button">Assinar Agora</a>
+    </div>
+  </div>
+</section>
+
+<!-- Nova seção Nosso Time -->
+<section>
+  <h2>Nosso Time</h2>
+  <div class="benefits">
+    <div class="benefit-card" onclick="alert('CEO – Aline: Criadora do produto e líder da Equilíbrio.')">
+      <h3>👩‍💼 CEO – Aline</h3>
+      <p>Criadora do produto de performance de call center, líder visionária e estrategista.</p>
+    </div>
+    <div class="benefit-card" onclick="alert('Analista – Vinicius: Cria relatórios e soluções inteligentes.')">
+      <h3>📊 Analista – Vinicius</h3>
+      <p>Desenvolvedor de relatórios e soluções com base nas oportunidades identificadas.</p>
+    </div>
+    <div class="benefit-card" onclick="alert('Supervisora – Cleide: A faz-tudo que transforma desafios em resultados.')">
+      <h3>🛠️ Supervisora – Cleide</h3>
+      <p>Conhecida como “faz tudo”, observa, entende e age com precisão sobre as oportunidades.</p>
+    </div>
+    <div class="benefit-card" onclick="alert('Supervisora – Michelle: Energia, empatia e resultados.')">
+      <h3>😊 Supervisora – Michelle</h3>
+      <p>Com desenvoltura e alegria, contagia a equipe, atinge metas e resolve conflitos.</p>
+    </div>
+    <div class="benefit-card" onclick="alert('Assistente – Jessé: Orienta, direciona e garante fluidez nas ações.')">
+      <h3>📌 Assistente – Jessé</h3>
+      <p>Orienta e informa com clareza os caminhos ideais a seguir diante das oportunidades.</p>
     </div>
   </div>
 </section>
