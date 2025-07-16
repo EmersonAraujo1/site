@@ -1,7 +1,3 @@
-from pathlib import Path
-
-# HTML completo com logomarca e todas as seções integradas
-full_site_with_logo = """
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -174,7 +170,7 @@ full_site_with_logo = """
 <body>
 
 <header>
-  <img src="dafc81df-7bcf-48c3-bc91-0ec3037f5936.png" alt="Logo Equilíbrio Soluções" />
+  <img src="9436b787-59f4-446f-bdad-96a1cc7b66bb.png" alt="Logo Equilíbrio Soluções" />
   <h1>Equilíbrio – Transforme seu Call Center em um Centro de Vendas</h1>
   <p>Atendimento inteligente com IA, engajamento real e conversão comprovada.</p>
   <button class="cta-button" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">
@@ -273,10 +269,3 @@ full_site_with_logo = """
 
 </body>
 </html>
-"""
-
-# Salvar o HTML final com todas as seções e logomarca
-file_path = Path("/mnt/data/equilibrio-site-final-completo.html")
-file_path.write_text(full_site_with_logo, encoding="utf-8")
-file_path.name
-
