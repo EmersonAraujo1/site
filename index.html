@@ -14,6 +14,7 @@
       --white: #ffffff;
       --shadow-light: rgba(0, 0, 0, 0.05);
     }
+
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
@@ -21,25 +22,32 @@
       color: var(--dark);
       line-height: 1.5;
     }
-    header {
-      background: linear-gradient(to right, var(--primary), #1565c0);
-      color: white;
+
+    /* AI.Eq */
+    .aieq-launch {
+      background-color: #e3f2fd;
+      padding: 40px 20px;
       text-align: center;
-      padding: 80px 20px;
+      border-bottom: 4px solid var(--accent);
     }
-    header img {
-      max-width: 180px;
-      margin-bottom: 20px;
+
+    .aieq-launch img {
+      width: 80px;
+      margin-bottom: 15px;
     }
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
+
+    .aieq-launch h2 {
+      color: var(--primary);
+      font-size: 2rem;
+      margin-bottom: 10px;
     }
-    header p {
-      font-size: 1.25rem;
-      max-width: 600px;
-      margin: auto;
+
+    .aieq-launch p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.2rem;
     }
+
     .cta-button {
       display: inline-block;
       margin-top: 30px;
@@ -54,25 +62,54 @@
       border: none;
       font-size: 1rem;
     }
+
     .cta-button:hover {
       background-color: #00b44b;
     }
+
+    header {
+      background: linear-gradient(to right, var(--primary), #1565c0);
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    header img {
+      max-width: 180px;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    header p {
+      font-size: 1.25rem;
+      max-width: 600px;
+      margin: auto;
+    }
+
     section {
       max-width: 1200px;
       margin: 60px auto;
       padding: 0 20px;
     }
+
     h2, h3 {
       color: var(--primary);
       margin-bottom: 20px;
     }
+
     .benefits, .plans, .testimonials {
       display: grid;
       gap: 20px;
     }
+
     .benefits {
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
+
     .benefit-card {
       background-color: var(--white);
       padding: 20px;
@@ -81,14 +118,17 @@
       cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
     .benefit-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     }
+
     .benefit-card h3 {
       color: var(--accent);
       margin-bottom: 10px;
     }
+
     .testimonial {
       background-color: var(--white);
       padding: 20px;
@@ -96,15 +136,18 @@
       border-radius: 6px;
       font-style: italic;
     }
+
     .testimonial strong {
       display: block;
       margin-top: 10px;
       font-style: normal;
       color: var(--primary);
     }
+
     .plans {
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
+
     .plan-card {
       background-color: var(--white);
       padding: 25px;
@@ -114,22 +157,27 @@
       text-align: center;
       box-shadow: 0 2px 10px var(--shadow-light);
     }
+
     .plan-card:hover {
       border-color: var(--accent);
       box-shadow: 0 6px 20px rgba(0, 200, 83, 0.3);
     }
+
     .plan-card h3 {
       margin-bottom: 10px;
       color: var(--primary);
     }
+
     .plan-card p {
       margin: 10px 0;
     }
+
     .plan-price {
       font-size: 1.5rem;
       color: var(--accent);
       margin: 15px 0;
     }
+
     .form-section form {
       background: var(--white);
       padding: 30px;
@@ -141,10 +189,12 @@
       flex-direction: column;
       gap: 15px;
     }
+
     .form-section label {
       font-weight: 600;
       margin-bottom: 5px;
     }
+
     .form-section input, .form-section textarea {
       padding: 12px;
       border: 1px solid #ccc;
@@ -153,9 +203,11 @@
       font-size: 1rem;
       resize: vertical;
     }
+
     .form-section button {
       width: 100%;
     }
+
     footer {
       background-color: var(--primary);
       color: white;
@@ -163,17 +215,84 @@
       padding: 40px 20px;
       margin-top: 60px;
     }
+
     footer a {
       color: #90caf9;
       margin: 0 10px;
       text-decoration: none;
     }
+
     footer a:hover {
       text-decoration: underline;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: white;
+      color: var(--dark);
+      max-width: 600px;
+      width: 100%;
+      padding: 30px;
+      border-radius: 12px;
+      position: relative;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 1.8rem;
+      color: var(--primary);
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.95);}
+      to {opacity: 1; transform: scale(1);}
     }
   </style>
 </head>
 <body>
+
+<!-- NOVA SEÇÃO AI.Eq COM MODAL -->
+<section class="aieq-launch">
+  <img src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/null/external-artificial-intelligence-robotics-flaticons-lineal-color-flat-icons.png" alt="Ícone IA AI.Eq">
+  <h2>🚀 Lançamento: AI.Eq</h2>
+  <p>
+    Apresentamos a <strong>AI.Eq – Inteligência Artificial Equilíbrio Soluções</strong>: a nova frente tecnológica da Equilíbrio.
+  </p>
+  <button class="cta-button" onclick="document.getElementById('aieqModal').style.display='flex'">Quero Saber Mais</button>
+</section>
+
+<div id="aieqModal" class="modal-overlay" onclick="fecharModal(event)">
+  <div class="modal-content">
+    <span class="close-button" onclick="document.getElementById('aieqModal').style.display='none'">&times;</span>
+    <h2>AI.Eq – Inteligência Artificial Equilíbrio</h2>
+    <p>
+      A <strong>AI.Eq</strong> é a revolução tecnológica da Equilíbrio! Um núcleo especializado em inteligência artificial que une automação de voz, comportamento de dados, chatbots avançados e performance orientada por métricas em tempo real.
+    </p>
+    <ul>
+      <li>🔹 IA adaptativa para atendimento e vendas.</li>
+      <li>🔹 Análises preditivas integradas ao seu CRM.</li>
+      <li>🔹 Modelos de linguagem treinados com seu histórico.</li>
+    </ul>
+    <p>Entre em contato conosco para saber como a AI.Eq pode transformar sua operação!</p>
+    <a href="#contato" class="cta-button">Fale com a Equipe</a>
+  </div>
+</div>
 
 <header>
   <img src="https://i.ibb.co/NdHj2gVG/Whats-App-Image-2025-07-16-at-16-09-13-removebg-preview-1.png" alt="Logo Equilíbrio Soluções" />
@@ -230,27 +349,26 @@
   </div>
 </section>
 
-<!-- Nova seção Nosso Time -->
 <section>
   <h2>Nosso Time</h2>
   <div class="benefits">
-    <div class="benefit-card" onclick="alert('CEO – Aline: Criadora do produto e líder da Equilíbrio.')">
+    <div class="benefit-card">
       <h3>👩‍💼 CEO – Cleide</h3>
       <p>Criadora do produto de performance de call center, líder visionária e estrategista.</p>
     </div>
-    <div class="benefit-card" onclick="alert('Analista – Vinicius: Cria relatórios e soluções inteligentes.')">
+    <div class="benefit-card">
       <h3>📊 Analista – Vinicius</h3>
       <p>Desenvolvedor de relatórios e soluções com base nas oportunidades identificadas.</p>
     </div>
-    <div class="benefit-card" onclick="alert('Supervisora – Cleide: A faz-tudo que transforma desafios em resultados.')">
+    <div class="benefit-card">
       <h3>🛠️ Supervisora – Aline</h3>
       <p>Conhecida como “faz tudo”, observa, entende e age com precisão sobre as oportunidades.</p>
     </div>
-    <div class="benefit-card" onclick="alert('Supervisora – Michelle: Energia, empatia e resultados.')">
+    <div class="benefit-card">
       <h3>😊 Supervisora – Michelle</h3>
       <p>Com desenvoltura e alegria, contagia a equipe, atinge metas e resolve conflitos.</p>
     </div>
-    <div class="benefit-card" onclick="alert('Assistente – Jessé: Orienta, direciona e garante fluidez nas ações.')">
+    <div class="benefit-card">
       <h3>📌 Assistente – Jessé</h3>
       <p>Orienta e informa com clareza os caminhos ideais a seguir diante das oportunidades.</p>
     </div>
@@ -299,6 +417,14 @@
     <a href="#">Contato Comercial</a>
   </p>
 </footer>
+
+<script>
+  function fecharModal(event) {
+    if (event.target.id === "aieqModal") {
+      document.getElementById("aieqModal").style.display = "none";
+    }
+  }
+</script>
 
 </body>
 </html>
